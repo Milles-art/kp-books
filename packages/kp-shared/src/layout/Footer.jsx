@@ -96,7 +96,7 @@ export default function Footer({
             <b>WE ACCEPT</b>
             {payList.map((p, i) => (
               p.type === 'img'
-                ? <span key={i} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: 36, width: 56, padding: 6, borderRadius: 8, background: '#fff' }}>
+                ? <span key={i} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: 24, width: 40, padding: 4, borderRadius: 6, background: '#fff' }}>
                     <img src={p.src} alt={p.alt} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} loading="lazy" />
                   </span>
                 : <span key={i}>{p.label}</span>
