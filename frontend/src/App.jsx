@@ -1,14 +1,12 @@
-import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Library from './pages/Library';
 import BookDetail from './pages/BookDetail';
 import Reader from './pages/Reader';
 import MyLibrary from './pages/MyLibrary';
-import { Footer } from '@kp/shared';
-import { Icon } from '@kp/shared';
+import { Header, Footer } from '@kp/shared';
 
 const WEAR = import.meta.env.VITE_WEAR_URL || '/';
-const Page = ({ children }) => <div className="wrap page">{children}</div>;
 
 function useTheme() {
   const [theme, setTheme] = useState(() => {
@@ -21,24 +19,13 @@ function useTheme() {
   return [theme, () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))];
 }
 
+const Page = ({ children }) => <div className="wrap page">{children}</div>;
+
 export default function App() {
   const [, toggle] = useTheme();
   return (
     <BrowserRouter>
-      <header className="top">
-        <div className="top-in">
-          <Link className="logo" to="/">KP BOOK</Link>
-          <nav className="menu">
-            <NavLink to="/" end>Library</NavLink>
-            <NavLink to="/my-library">My library</NavLink>
-            <a href={WEAR}>KP Wear</a>
-          </nav>
-          <div className="icons">
-            <Link to="/my-library" aria-label="My library"><Icon n="user" /></Link>
-            <button onClick={toggle} aria-label="Switch light or dark"><Icon n="sun" /></button>
-          </div>
-        </div>
-      </header>
+      <Header wearUrl={WEAR} onToggleTheme={toggle} />
       <main>
         <Routes>
           <Route path="/" element={<Page><Library /></Page>} />
@@ -48,7 +35,7 @@ export default function App() {
           <Route path="*" element={<Page><p className="muted">Page not found.</p></Page>} />
         </Routes>
       </main>
-      <Footer />
+      <Footer wearUrl={WEAR} />
     </BrowserRouter>
   );
 }
