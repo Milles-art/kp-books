@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Icon } from './Icon';
+import { Icon } from '../ui/Icon';
 
 const WEAR = import.meta.env.VITE_WEAR_URL || '/';
 const TRUST = [

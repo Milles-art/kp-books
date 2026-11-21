@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
 import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Library from './pages/Library';
 import BookDetail from './pages/BookDetail';
 import Reader from './pages/Reader';
 import MyLibrary from './pages/MyLibrary';
-import Footer from './components/Footer';
-import { Icon } from './components/Icon';
+import Footer from './shared/layout/Footer';
+import { Icon } from './shared/ui/Icon';
 
 const WEAR = import.meta.env.VITE_WEAR_URL || '/';
 const Page = ({ children }) => <div className="wrap page">{children}</div>;
@@ -41,7 +41,7 @@ export default function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Library />} />
+          <Route path="/" element={<Page><Library /></Page>} />
           <Route path="/books/:slug" element={<Page><BookDetail /></Page>} />
           <Route path="/read/:slug/:page" element={<Page><Reader /></Page>} />
           <Route path="/my-library" element={<Page><MyLibrary /></Page>} />
