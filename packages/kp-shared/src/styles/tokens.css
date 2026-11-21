@@ -1,5 +1,5 @@
 /* Shared design tokens for KP products (Books + Wear).
-   Import this in any app that wants the KP look. */
+   Source of truth for colors, fonts, and dark mode. */
 :root {
   --kp-green: #00965e;
   --kp-red: #e22b33;
@@ -12,6 +12,17 @@
   --kp-sun: #f0b323;
   --kp-font-display: Anton, Impact, 'Arial Narrow', sans-serif;
   --kp-font-body: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Aliases so existing KP Books styles keep working unchanged */
+  --green: var(--kp-green);
+  --red: var(--kp-red);
+  --ink: var(--kp-ink);
+  --paper: var(--kp-paper);
+  --card: var(--kp-card);
+  --muted: var(--kp-muted);
+  --line: var(--kp-line);
+  --mint: var(--kp-mint);
+  --sun: var(--kp-sun);
 }
 :root[data-theme="dark"] {
   --kp-ink: #f2f4f1;
@@ -20,4 +31,11 @@
   --kp-muted: #9aa89f;
   --kp-line: #26302a;
   --kp-mint: #13211a;
+
+  --ink: var(--kp-ink);
+  --paper: var(--kp-paper);
+  --card: var(--kp-card);
+  --muted: var(--kp-muted);
+  --line: var(--kp-line);
+  --mint: var(--kp-mint);
 }

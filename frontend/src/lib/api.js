@@ -1,1 +1,1 @@
-export * from '../shared/lib/api';
+export * from '@kp/shared';

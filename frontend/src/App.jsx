@@ -4,8 +4,8 @@ import Library from './pages/Library';
 import BookDetail from './pages/BookDetail';
 import Reader from './pages/Reader';
 import MyLibrary from './pages/MyLibrary';
-import Footer from './shared/layout/Footer';
-import { Icon } from './shared/ui/Icon';
+import { Footer } from '@kp/shared';
+import { Icon } from '@kp/shared';
 
 const WEAR = import.meta.env.VITE_WEAR_URL || '/';
 const Page = ({ children }) => <div className="wrap page">{children}</div>;

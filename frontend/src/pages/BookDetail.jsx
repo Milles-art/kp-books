@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { api, money } from '../lib/api';
-import BookCover from '../shared/ui/BookCover';
+import { BookCover } from '@kp/shared';
 import PayModal from '../components/PayModal';
 
 export default function BookDetail() {
