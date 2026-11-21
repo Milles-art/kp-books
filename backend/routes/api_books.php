@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Api\V1\BookController;
-use App\Http\Controllers\Api\V1\BookPageController;
-use App\Http\Controllers\Api\V1\BookPaymentController;
-use App\Http\Controllers\Api\V1\LibraryController;
+use App\Http\Controllers\Api\V1\Books\BookController;
+use App\Http\Controllers\Api\V1\Books\BookPageController;
+use App\Http\Controllers\Api\V1\Books\BookPaymentController;
+use App\Http\Controllers\Api\V1\Books\LibraryController;
 use Illuminate\Support\Facades\Route;
 
 // Include from routes/api.php inside the existing Route::prefix('v1') group:
-//   require __DIR__ . '/books.php';
+//   require __DIR__ . '/api_books.php';
 
 Route::prefix('books')->group(function () {
     Route::get('/', [BookController::class, 'index']);
