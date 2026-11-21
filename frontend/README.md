@@ -29,4 +29,5 @@ Plus the pay-any-amount modal: quick amounts, live "this opens pages 1 to N" pre
 
 - Pages arrive as plain text and are drawn as text, never as HTML. A line starting with `## ` is a chapter heading.
 - Copy blocking, no right-click and the watermark only deter casual sharing. The real protection is that locked pages never leave the server.
-- Styling is plain CSS in `src/styles.css` with the KP green accent, light and dark by device setting. Swap it for the KP Wear design tokens when you have them.
+- Styling follows the KP Wear look from screenshots: Anton headlines with Inter body text, KP green, red and near-black, a floating pill header, big rounded cards with colored bands, a green ribbon, a green footer with a giant wordmark, and a light/dark toggle. It is plain CSS in `src/styles.css`, so swap the colors and fonts for the real KP Wear design tokens when you have them.
+- Placeholders to replace: the "KP BOOK" text logo (use the real logo image), the placeholder book covers (upload real covers), the footer contact details, and the "Art. People. Books. A bigger story." line.

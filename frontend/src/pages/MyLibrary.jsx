@@ -15,9 +15,10 @@ export default function MyLibrary() {
 
   return (
     <>
+      <span className="eyebrow">Your books</span>
       <h1>My library</h1>
       {books.length ? (
-        <div className="grid">{books.map((b) => <BookCard key={b.slug} b={b} />)}</div>
+        <div className="shelf">{books.map((b, i) => <BookCard key={b.slug} b={b} i={i} />)}</div>
       ) : (
         <p className="muted">Books you read or unlock appear here. <Link to="/">Browse the library</Link>.</p>
       )}

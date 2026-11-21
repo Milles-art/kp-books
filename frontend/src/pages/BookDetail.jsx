@@ -23,10 +23,11 @@ export default function BookDetail() {
 
   return (
     <>
-      <p><Link className="btn ghost sm" to="/">All books</Link></p>
+      <p><Link className="btn ghost sm" to="/">Back to all books</Link></p>
       <div className="detail">
         <BookCover book={book} />
         <div>
+          <span className="eyebrow">KP Book{book.author ? ` / ${book.author}` : ''}</span>
           <h1>{book.title}</h1>
           <p className="muted">{book.subtitle}{book.author ? `, by ${book.author}` : ''}</p>
           <p className="lit">{book.description}</p>
@@ -41,12 +42,12 @@ export default function BookDetail() {
             <button className="btn" onClick={() => nav(`/read/${book.slug}/${access.last_page || 1}`)}>
               {access.last_page > 1 ? 'Continue reading' : access.credit_balance > 0 ? 'Start reading' : 'Read free preview'}
             </button>
-            {!owned && <button className="btn ghost" onClick={() => setPaying(true)}>Unlock more pages</button>}
+            {!owned && <button className="btn green" onClick={() => setPaying(true)}>Unlock more pages</button>}
             <a className="btn ghost" href={share} target="_blank" rel="noopener noreferrer">Share on WhatsApp</a>
           </div>
           {!owned && (
             <>
-              <h3>What your payment opens</h3>
+              <h3 className="sub">What your payment opens</h3>
               <table className="tbl">
                 <thead><tr><th>You pay</th><th>You can read</th></tr></thead>
                 <tbody>
