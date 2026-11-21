@@ -15,6 +15,7 @@ Route::prefix('books')->group(function () {
     Route::post('{book:id}/import', [BookAdminController::class, 'import']);
     Route::post('{book:id}/publish', [BookAdminController::class, 'publish']);
     Route::post('{book:id}/unpublish', [BookAdminController::class, 'unpublish']);
+    Route::post('{book:id}/cover', [BookAdminController::class, 'cover']);
 
     Route::get('{book:id}/pages/{page}', [BookAdminController::class, 'showPage'])->whereNumber('page');
     Route::put('{book:id}/pages/{page}', [BookAdminController::class, 'updatePage'])->whereNumber('page');

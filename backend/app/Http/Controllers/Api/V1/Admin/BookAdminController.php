@@ -146,6 +146,26 @@ class BookAdminController extends Controller
         return response()->json(['data' => $this->present($book->refresh())]);
     }
 
+    /** Upload or replace the cover image for a book. */
+    public function cover(Request $request, Book $book)
+    {
+        $data = $request->validate([
+            'cover' => ['required', 'file', 'image', 'max:' . ((int) config('kpbook.max_upload_mb') * 1024)],
+        ]);
+
+        $file = $data['cover'];
+        $disk = Storage::disk('public');
+        $stored = $disk->putFileAs('book-covers', $file, Str::uuid() . '.' . $file->getClientOriginalExtension());
+
+        if ($book->cover_path && str_starts_with($book->cover_path, 'book-covers/')) {
+            $disk->delete($book->cover_path);
+        }
+
+        $book->update(['cover_path' => $stored]);
+
+        return response()->json(['data' => $this->present($book->refresh())]);
+    }
+
     /** Admin preview of any page, including locked ones. */
     public function showPage(Book $book, int $page)
     {
@@ -218,6 +238,8 @@ class BookAdminController extends Controller
             'subtitle' => $b->subtitle,
             'author' => $b->author,
             'description' => $b->description,
+            'cover_path' => $b->cover_path,
+            'cover_url' => $b->cover_path ? asset('storage/' . $b->cover_path) : null,
             'status' => $b->status,
             'price_full' => $b->price_full,
             'total_pages' => $b->total_pages,
