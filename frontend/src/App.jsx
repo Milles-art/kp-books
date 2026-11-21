@@ -34,6 +34,15 @@ const Page = ({ children }) => <div className="wrap page">{children}</div>;
 
 export default function App() {
   const [, toggle] = useTheme();
+  const payments = [
+    { src: '/payments/mpesa.png', alt: 'M-Pesa' },
+    { src: '/payments/airtel-money.png', alt: 'Airtel Money' },
+    { src: '/payments/halopesa.png', alt: 'HaloPesa' },
+    { src: '/payments/yas.png', alt: 'Mixx by Yas' },
+    { src: '/payments/selcom.png', alt: 'Selcom' },
+    { src: '/payments/visa.png', alt: 'Visa' },
+    { src: '/payments/mastercard.png', alt: 'Mastercard' },
+  ];
   return (
     <ErrorBoundary>
       <BrowserRouter>
@@ -47,7 +56,7 @@ export default function App() {
             <Route path="*" element={<Page><p className="muted">Page not found.</p></Page>} />
           </Routes>
         </main>
-        <Footer wearUrl={WEAR} />
+        <Footer wearUrl={WEAR} payments={payments} />
       </BrowserRouter>
     </ErrorBoundary>
   );
