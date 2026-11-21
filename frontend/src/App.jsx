@@ -1,10 +1,21 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Component, useEffect, useState } from 'react';
 import Library from './pages/Library';
 import BookDetail from './pages/BookDetail';
 import Reader from './pages/Reader';
 import MyLibrary from './pages/MyLibrary';
 import { Header, Footer } from '@kp/shared';
+
+class ErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { err: null }; }
+  static getDerivedStateFromError(err) { return { err }; }
+  render() {
+    if (this.state.err) {
+      return <pre style={{ color: 'red', padding: 20, whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>{String(this.state.err && this.state.err.stack || this.state.err)}</pre>;
+    }
+    return this.props.children;
+  }
+}
 
 const WEAR = import.meta.env.VITE_WEAR_URL || '/';
 
@@ -24,18 +35,20 @@ const Page = ({ children }) => <div className="wrap page">{children}</div>;
 export default function App() {
   const [, toggle] = useTheme();
   return (
-    <BrowserRouter>
-      <Header wearUrl={WEAR} onToggleTheme={toggle} />
-      <main>
-        <Routes>
-          <Route path="/" element={<Page><Library /></Page>} />
-          <Route path="/books/:slug" element={<Page><BookDetail /></Page>} />
-          <Route path="/read/:slug/:page" element={<Page><Reader /></Page>} />
-          <Route path="/my-library" element={<Page><MyLibrary /></Page>} />
-          <Route path="*" element={<Page><p className="muted">Page not found.</p></Page>} />
-        </Routes>
-      </main>
-      <Footer wearUrl={WEAR} />
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Header wearUrl={WEAR} onToggleTheme={toggle} />
+        <main>
+          <Routes>
+            <Route path="/" element={<Page><Library /></Page>} />
+            <Route path="/books/:slug" element={<Page><BookDetail /></Page>} />
+            <Route path="/read/:slug/:page" element={<Page><Reader /></Page>} />
+            <Route path="/my-library" element={<Page><MyLibrary /></Page>} />
+            <Route path="*" element={<Page><p className="muted">Page not found.</p></Page>} />
+          </Routes>
+        </main>
+        <Footer wearUrl={WEAR} />
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
