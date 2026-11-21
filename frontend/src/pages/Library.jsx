@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api, money } from '../lib/api';
-import { BookCover } from '@kp/shared';
-import { Icon } from '@kp/shared';
+import { BookCover } from '@Milles-art/kp-shared';
+import { Icon } from '@Milles-art/kp-shared';
 
 export function BookCard({ b, i = 0 }) {
   const open = b.access.allowed_pages;

@@ -1,1 +1,1 @@
-export * from '@kp/shared';
+export * from '@Milles-art/kp-shared';

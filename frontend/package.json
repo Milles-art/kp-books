@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@kp/shared": "file:../packages/kp-shared",
+    "@Milles-art/kp-shared": "file:../packages/kp-shared",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0"

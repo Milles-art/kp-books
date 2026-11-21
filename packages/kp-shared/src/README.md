@@ -10,7 +10,7 @@ Reusable modules shared between KP Books and KP Wear.
 - `styles/tokens.css` — design tokens (colors, fonts, dark mode)
 
 ## Using in KP Wear
-Copy this folder into KP Wear's `src/shared/` and import from there, or publish as an npm workspace package (`@kp/shared`) and depend on it from both apps. The tokens should be the source of truth for both apps' styling.
+Copy this folder into KP Wear's `src/shared/` and import from there, or publish as an npm workspace package (`@Milles-art/kp-shared`) and depend on it from both apps. The tokens should be the source of truth for both apps' styling.
 
 ## What stays app-specific
 Catalog cards, cart/checkout, reader, hero sections, category browsing.

@@ -4,7 +4,7 @@ import Library from './pages/Library';
 import BookDetail from './pages/BookDetail';
 import Reader from './pages/Reader';
 import MyLibrary from './pages/MyLibrary';
-import { Header, Footer } from '@kp/shared';
+import { Header, Footer } from '@Milles-art/kp-shared';
 
 class ErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { err: null }; }
