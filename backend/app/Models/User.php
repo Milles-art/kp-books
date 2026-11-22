@@ -11,6 +11,7 @@ use App\Enums\UserRole;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['name', 'email', 'password', 'role'])]
 #[Hidden(['password', 'remember_token'])]
@@ -36,5 +37,35 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->role === UserRole::Admin;
+    }
+
+    public function collections(): HasMany
+    {
+        return $this->hasMany(BookCollection::class);
+    }
+
+    public function wishlistItems(): HasMany
+    {
+        return $this->hasMany(WishlistItem::class);
+    }
+
+    public function readingSessions(): HasMany
+    {
+        return $this->hasMany(ReadingSession::class);
+    }
+
+    public function refunds(): HasMany
+    {
+        return $this->hasMany(Refund::class);
+    }
+
+    public function accesses(): HasMany
+    {
+        return $this->hasMany(BookAccess::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(BookPayment::class);
     }
 }

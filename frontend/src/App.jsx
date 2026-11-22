@@ -4,6 +4,10 @@ import Library from './pages/Library';
 import BookDetail from './pages/BookDetail';
 import Reader from './pages/Reader';
 import MyLibrary from './pages/MyLibrary';
+import Saved from './pages/Saved';
+import Authors from './pages/Authors';
+import AuthorDetail from './pages/AuthorDetail';
+import Devices from './pages/Devices';
 import { Header, Footer } from '@Milles-art/kp-shared';
 
 class ErrorBoundary extends Component {
@@ -46,13 +50,27 @@ export default function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <Header wearUrl={WEAR} onToggleTheme={toggle} />
+        <Header
+          wearUrl={WEAR}
+          onToggleTheme={toggle}
+          nav={[
+            { label: 'Books', to: '/' },
+            { label: 'Authors', to: '/authors' },
+            { label: 'Saved', to: '/saved' },
+            { label: 'My library', to: '/my-library' },
+            { label: 'Devices', to: '/devices' },
+          ]}
+        />
         <main>
           <Routes>
             <Route path="/" element={<Page><Library /></Page>} />
             <Route path="/books/:slug" element={<Page><BookDetail /></Page>} />
             <Route path="/read/:slug/:page" element={<Page><Reader /></Page>} />
             <Route path="/my-library" element={<Page><MyLibrary /></Page>} />
+            <Route path="/saved" element={<Page><Saved /></Page>} />
+            <Route path="/authors" element={<Page><Authors /></Page>} />
+            <Route path="/authors/:slug" element={<Page><AuthorDetail /></Page>} />
+            <Route path="/devices" element={<Page><Devices /></Page>} />
             <Route path="*" element={<Page><p className="muted">Page not found.</p></Page>} />
           </Routes>
         </main>
