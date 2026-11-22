@@ -2,6 +2,23 @@ const BASE = import.meta.env.VITE_API_URL || '';
 export const TOKEN_KEY = import.meta.env.VITE_TOKEN_KEY || 'token';
 export const LOGIN_URL = import.meta.env.VITE_LOGIN_URL || '/login';
 export const SIMULATE = import.meta.env.VITE_SIMULATE_PAYMENTS === 'true';
+const DEVICE_KEY = 'kp.device';
+
+/** Stable, anonymous per-browser identifier used for soft device limits. */
+export function getDeviceId() {
+  try {
+    let id = localStorage.getItem(DEVICE_KEY);
+    if (!id) {
+      id = typeof crypto !== 'undefined' && crypto.randomUUID
+        ? crypto.randomUUID()
+        : `dev-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      localStorage.setItem(DEVICE_KEY, id);
+    }
+    return id;
+  } catch {
+    return 'unknown';
+  }
+}
 
 export function getToken() {
   try {
@@ -18,6 +35,7 @@ export async function api(path, { method = 'GET', body } = {}) {
     method,
     headers: {
       Accept: 'application/json',
+      'X-Device-Id': getDeviceId(),
       ...(body ? { 'Content-Type': 'application/json' } : {}),
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },

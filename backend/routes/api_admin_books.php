@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Admin\AuthorAdminController;
 use App\Http\Controllers\Api\V1\Admin\BookAdminController;
+use App\Http\Controllers\Api\V1\Admin\RefundAdminController;
 use Illuminate\Support\Facades\Route;
 
 // Include this inside the existing admin route group (the one api_admin.php uses), so the
@@ -19,4 +21,20 @@ Route::prefix('books')->group(function () {
 
     Route::get('{book:id}/pages/{page}', [BookAdminController::class, 'showPage'])->whereNumber('page');
     Route::put('{book:id}/pages/{page}', [BookAdminController::class, 'updatePage'])->whereNumber('page');
+});
+
+// Author management.
+Route::prefix('authors')->group(function () {
+    Route::get('/', [AuthorAdminController::class, 'index']);
+    Route::post('/', [AuthorAdminController::class, 'store']);
+    Route::get('{author:slug}', [AuthorAdminController::class, 'show']);
+    Route::patch('{author:slug}', [AuthorAdminController::class, 'update']);
+    Route::delete('{author:slug}', [AuthorAdminController::class, 'destroy']);
+    Route::post('{author:slug}/portrait', [AuthorAdminController::class, 'portrait']);
+});
+
+// Refund queue (partial-payment policy per Kipanya spec).
+Route::prefix('refunds')->group(function () {
+    Route::get('/', [RefundAdminController::class, 'index']);
+    Route::post('{refund:id}/process', [RefundAdminController::class, 'process']);
 });

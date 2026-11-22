@@ -19,6 +19,17 @@ class SimulatedGateway implements PaymentGateway
             return null;
         }
 
+        // Shared commerce: when a webhook secret is configured, require a valid
+        // HMAC over the raw body before trusting any callback.
+        $secret = config('kpbook.webhook_secret');
+        if ($secret) {
+            $expected = hash_hmac('sha256', $request->getContent(), (string) $secret);
+            $provided = (string) $request->header('X-Signature', '');
+            if (! hash_equals($expected, $provided)) {
+                return null;
+            }
+        }
+
         $ref = $request->input('provider_ref');
         $status = $request->input('status');
 

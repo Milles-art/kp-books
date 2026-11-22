@@ -10,6 +10,7 @@ class BookPayment extends Model
     public const PENDING = 'pending';
     public const CONFIRMED = 'confirmed';
     public const FAILED = 'failed';
+    public const REFUNDED = 'refunded';
 
     protected $fillable = [
         'user_id', 'book_id', 'amount', 'currency', 'provider',

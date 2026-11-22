@@ -10,9 +10,30 @@ export default function BookDetail() {
   const [book, setBook] = useState(null);
   const [err, setErr] = useState('');
   const [paying, setPaying] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   const load = useCallback(() => api(`/books/${slug}`).then((r) => setBook(r.data)).catch((e) => setErr(e.status === 404 ? 'Book not found.' : e.message)), [slug]);
   useEffect(() => { load(); }, [load]);
+
+  useEffect(() => {
+    api('/books/saved')
+      .then((r) => setSaved(r.data.saved.some((b) => b.slug === slug)))
+      .catch(() => {});
+  }, [slug]);
+
+  const toggleSave = async () => {
+    if (saving) return;
+    setSaving(true);
+    try {
+      const r = await api(`/books/${slug}/save`, { method: 'POST' });
+      setSaved(r.data.saved);
+    } catch (e) {
+      setErr(e.status === 401 ? 'Sign in with KP Wear to save books.' : e.message);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   if (err) return <p className="err">{err}</p>;
   if (!book) return <p className="muted">Loading…</p>;
@@ -43,6 +64,7 @@ export default function BookDetail() {
               {access.last_page > 1 ? 'Continue reading' : access.credit_balance > 0 ? 'Start reading' : 'Read free preview'}
             </button>
             {!owned && <button className="btn green" onClick={() => setPaying(true)}>Unlock more pages</button>}
+            <button className="btn ghost" onClick={toggleSave} disabled={saving}>{saved ? 'Saved ✓' : 'Save for later'}</button>
             <a className="btn ghost" href={share} target="_blank" rel="noopener noreferrer">Share on WhatsApp</a>
           </div>
           {!owned && (
