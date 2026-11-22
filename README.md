@@ -18,12 +18,21 @@ Digital-only books. Pay-any-amount access (minimum 1,000 TZS). Pages unlock in o
 
 Status: scaffolding only — no implementation yet.
 
-## Static reference clone
+## Static storefront mirror + admin console
 
-`static-clone/` contains a self-contained, page-for-page mirror of the public KP Book
-storefront plus a small Node server and admin console. It is independent of the Laravel
-backend and React app above — see `static-clone/README.md` for details and run instructions.
+A self-contained, page-for-page mirror of the public KP Book storefront, merged into this
+repo. It is independent of the Laravel backend and React app above.
+
+- `site/` — the static site: 21 HTML pages, bundled JS/CSS, local fonts and cover images
+- `site/admin/` — admin console (Overview, Books, Authors, Orders, Readers, Settings)
+- `server.js` — Node server serving the site, admin API and the frontend server functions
+- `backend/admin-api.cjs`, `backend/server-functions.cjs`, `backend/data/` — backend pieces
+- `backend/NODE_ADMIN.md` — admin API notes
+- `docs/STATIC_SITE.md` — full details, credentials and regeneration scripts
+
+Run it from the repo root:
 
 ```bash
-cd static-clone && node server.js   # http://localhost:4175
+node server.js                 # http://localhost:4175
+# admin: http://localhost:4175/admin  (admin / admin123)
 ```

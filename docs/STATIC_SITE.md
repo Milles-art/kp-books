@@ -16,13 +16,12 @@ The admin console has six sections:
 - **Readers** — manage demo reader accounts
 - **Settings** — site-wide config
 
-Data lives in `backend/data/admin.json`; the API is in `backend/admin-api.js`.
+Data lives in `backend/data/admin.json`; the API is in `backend/admin-api.cjs`.
 
 ## Run it
 
 ```bash
-cd "/home/millen/Documents/Default Project/kp-book"
-node server.js
+node server.js   # from the repo root
 ```
 
 Then open **<http://localhost:4175>** (or set `PORT=xxxx` to use another port).

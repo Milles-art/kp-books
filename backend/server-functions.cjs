@@ -5,7 +5,7 @@
 const fs = require("fs");
 const path = require("path");
 const https = require("https");
-const config = require("./config");
+const config = require("./config.cjs");
 
 const captured = JSON.parse(
   fs.readFileSync(path.join(__dirname, "server-functions.json"), "utf8")

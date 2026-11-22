@@ -3,9 +3,9 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
-const config = require("./backend/config");
-const serverFns = require("./backend/server-functions");
-const adminApi = require("./backend/admin-api");
+const config = require("./backend/config.cjs");
+const serverFns = require("./backend/server-functions.cjs");
+const adminApi = require("./backend/admin-api.cjs");
 
 const ROOT = config.siteDir;
 const PORT = config.port;
