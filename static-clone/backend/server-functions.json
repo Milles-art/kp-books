@@ -1,0 +1,66 @@
+{
+  "0adba232ed73813650b89fc7cdae1bb76332a9dc50f08f5fd19657b2fd14ac06": {
+    "status": 405,
+    "body": "expected POST method. Got GET"
+  },
+  "1ae58f9849f9b6d1ac90daaeec452361e565343c9571197d57276c8dfaebacad": {
+    "status": 405,
+    "body": "expected POST method. Got GET"
+  },
+  "3543d31db313c0ee790b2ed2529175eeb89b01f4f37810c0c84bf2438930119f": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":1,\"s\":\"https://01m7zqvzdd5gpx8qa5ykdkx39e.hercules-auth.com/api/auth/oauth2/authorize?redirect_uri=https%3A%2F%2Fkipanya-digital-books-552698.onhercules.app%2Fauth%2Fcallback&scope=openid+profile+email+offline_access&state=7WNvNfcbGPc6aPq4U98mwvUf23eIRhl8IbeDJXXhNsE&code_challenge=br1WcSjLbU7SNYfcQLO8MV8xufQfPLgmQqQzs9otMlU&code_challenge_method=S256&prompt=login&client_id=yzGfHoULCZtGyOMEJHgdajAtuCpksJcN&response_type=code\"}]},\"o\":0}"
+  },
+  "385e6f4b952d8742cc00501d9d51c04106d2aec1cd8900b424d1d016f59d2b9e": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":2,\"s\":1}]},\"o\":0}"
+  },
+  "3a14356af89c9be61d789dfb15d36183b8a961fed8d7c3c1d555f3c23f63625e": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":10,\"i\":1,\"p\":{\"k\":[\"user\"],\"v\":[{\"t\":2,\"s\":0}]},\"o\":0}]},\"o\":0}"
+  },
+  "50f3d6285c9166c6d21deed0ade31f72f02649e2a0c00a793ade2ab64ffb73c8": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":2,\"s\":1}]},\"o\":0}"
+  },
+  "6099bc12cdd4a68bb3dfc5c517bf3ccfd100a39379027cdb7c75e12a52bf4f6f": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":2,\"s\":3}]},\"o\":0}"
+  },
+  "6bb585fbd695c81e26456bcbf6ab9bd46c651d0b559ac3c5f3b49160fa28f30d": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":1,\"s\":\"https://01m7zqvzdd5gpx8qa5ykdkx39e.hercules-auth.com/api/auth/oauth2/authorize?redirect_uri=https%3A%2F%2Fkipanya-digital-books-552698.onhercules.app%2Fauth%2Fcallback&scope=openid+profile+email+offline_access&state=NWij8DuY2th0kSCy4-jk5mz4r0Q2a-3oq6KuDlcvoRg&code_challenge=-sVhbRq6cYil0Wv8GocPyRN1stfgs1qy0MjJWDnAKhU&code_challenge_method=S256&prompt=login&screen_hint=sign-up&client_id=yzGfHoULCZtGyOMEJHgdajAtuCpksJcN&response_type=code\"}]},\"o\":0}"
+  },
+  "831a18a1dd06119b0760f8d1f3a107aa2b909b07a570152c2a46bc0492c501dc": {
+    "status": 405,
+    "body": "expected POST method. Got GET"
+  },
+  "862f7f256584e1b0093e021b924f1a74ce8c301e04c9e6020cf4e01d712fdb59": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":1,\"s\":\"https://01m7zqvzdd5gpx8qa5ykdkx39e.hercules-auth.com/api/auth/oauth2/authorize?redirect_uri=https%3A%2F%2Fkipanya-digital-books-552698.onhercules.app%2Fauth%2Fcallback&scope=openid+profile+email+offline_access&state=nVJP4jkoIAWvk52aSiTj5p1vHWXIysCr5GazB0Hqypg&code_challenge=XC5Bz-MgSA3aqEmCGthBcy-v65oTcuKoYFNxsBfmdHk&code_challenge_method=S256&prompt=login&screen_hint=sign-in&client_id=yzGfHoULCZtGyOMEJHgdajAtuCpksJcN&response_type=code\"}]},\"o\":0}"
+  },
+  "ad2396c04d7773ad47f8dfe0db939197f0c2398bee376e1e583cddffbbc09cb3": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":10,\"i\":1,\"p\":{\"k\":[\"accessToken\",\"idToken\",\"serverTime\"],\"v\":[{\"t\":2,\"s\":1},{\"t\":2,\"s\":1},{\"t\":0,\"s\":1795334093953}]},\"o\":0}]},\"o\":0}"
+  },
+  "d18895e7ac1f0b3333b9d5eec738de2c64a958a80daa6cbbc38a32095f426909": {
+    "status": 405,
+    "body": "expected POST method. Got GET"
+  },
+  "e71434babdc34ebc9f6d59688b36714370ff8089d021e8b2d5df795d91976a69": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":10,\"i\":1,\"p\":{\"k\":[\"user\"],\"v\":[{\"t\":2,\"s\":0}]},\"o\":0}]},\"o\":0}"
+  },
+  "ed361ac1cffecd2b838f91b124e09a22f9dbfa7e18f97625519386b205ae606d": {
+    "status": 405,
+    "body": "expected POST method. Got GET"
+  },
+  "f14a93489a7102420a84c1cd1488f898dc65c3a4483c0b6672190f5e4b285431": {
+    "status": 405,
+    "body": "expected POST method. Got GET"
+  },
+  "f5a248fc3733e18dee0e66e13cc704b763a3b8ab0adbc793f495f83f693b324b": {
+    "status": 200,
+    "body": "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\"],\"v\":[{\"t\":10,\"i\":1,\"p\":{\"k\":[\"authenticatedAt\",\"isStale\"],\"v\":[{\"t\":2,\"s\":0},{\"t\":2,\"s\":2}]},\"o\":0}]},\"o\":0}"
+  }
+}

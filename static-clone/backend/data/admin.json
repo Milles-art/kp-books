@@ -1,0 +1,267 @@
+{
+  "books": [
+    {
+      "slug": "mtaa-wa-kazi",
+      "title": "Mtaa wa Kazi",
+      "subtitle": "Masimulizi ya Dar",
+      "authorSlug": "masoud-kipanya",
+      "cover": "/file_CgccIWut7Jo847OLF4Jq31Xi.webp",
+      "blurb": "One street in Dar es Salaam, twelve people, one very long week. A graphic novel about hustle, luck and neighbours.",
+      "genre": "Fiction",
+      "language": "Kiswahili",
+      "pageCount": 184,
+      "publishedYear": 2026,
+      "featured": true,
+      "isNew": true,
+      "access": {
+        "priceTzs": 18000,
+        "minPaymentTzs": 1000,
+        "samplePages": 12,
+        "blockSize": 8
+      },
+      "sampleTitle": "Sura ya Kwanza: Alfajiri",
+      "status": "published"
+    },
+    {
+      "slug": "the-salt-road",
+      "title": "The Salt Road",
+      "subtitle": "A novel of the coast",
+      "authorSlug": "zawadi-mrisho",
+      "cover": "/file_eETIgdxc6aQuiccPkzazNCnr.webp",
+      "blurb": "Three generations of a Zanzibari family, one dhow, and a secret that sailed with the monsoon.",
+      "genre": "Fiction",
+      "language": "English",
+      "pageCount": 312,
+      "publishedYear": 2025,
+      "featured": true,
+      "isNew": false,
+      "access": {
+        "priceTzs": 25000,
+        "minPaymentTzs": 1000,
+        "samplePages": 18,
+        "blockSize": 10
+      },
+      "sampleTitle": "Chapter One: The Door",
+      "status": "published"
+    },
+    {
+      "slug": "build-better",
+      "title": "Build Better",
+      "subtitle": "Lessons from Kariakoo traders",
+      "authorSlug": "juma-kassim",
+      "cover": "/file_6Kguigkie9wuVCOQS4yORgIs.webp",
+      "blurb": "Twenty years of trading, distilled into 30 short, honest lessons on money, customers and patience.",
+      "genre": "Business",
+      "language": "English",
+      "pageCount": 168,
+      "publishedYear": 2026,
+      "featured": false,
+      "isNew": true,
+      "access": {
+        "priceTzs": 15000,
+        "minPaymentTzs": 1000,
+        "samplePages": 10,
+        "blockSize": 6
+      },
+      "sampleTitle": "Lesson 1: Your table is your first office",
+      "status": "published"
+    },
+    {
+      "slug": "kiboko-na-mvua",
+      "title": "Kiboko na Mvua",
+      "subtitle": "Hadithi ya watoto",
+      "authorSlug": "masoud-kipanya",
+      "cover": "/file_7Rsu9EDtuuo9zGWyCeVthL2V.webp",
+      "blurb": "Kiboko loves the rain more than anyone in the village. But this year, the rain is late.",
+      "genre": "Children",
+      "language": "Kiswahili",
+      "pageCount": 40,
+      "publishedYear": 2026,
+      "featured": false,
+      "isNew": true,
+      "access": {
+        "priceTzs": 6000,
+        "minPaymentTzs": 1000,
+        "samplePages": 6,
+        "blockSize": 4
+      },
+      "sampleTitle": "Mwanzo",
+      "status": "published"
+    },
+    {
+      "slug": "konfidence",
+      "title": "Konfidence",
+      "subtitle": "Cartoons 2016 to 2026",
+      "authorSlug": "masoud-kipanya",
+      "cover": "/file_XAe4TfA5se9GFyO1dP39wA7R.webp",
+      "blurb": "Ten years of Kipanya's sharpest cartoons, with the stories behind the ones that made people talk.",
+      "genre": "Satire & Comics",
+      "language": "English",
+      "pageCount": 228,
+      "publishedYear": 2026,
+      "featured": true,
+      "isNew": false,
+      "access": {
+        "priceTzs": 22000,
+        "minPaymentTzs": 1000,
+        "samplePages": 14,
+        "blockSize": 12
+      },
+      "sampleTitle": "Introduction: Nothing but konfidence",
+      "status": "published"
+    },
+    {
+      "slug": "kilimanjaro-mornings",
+      "title": "Kilimanjaro Mornings",
+      "subtitle": "A memoir of the mountain",
+      "authorSlug": "zawadi-mrisho",
+      "cover": "/file_svl8l34O8MYVpbEjzJAeecBQ.webp",
+      "blurb": "A coastal writer spends one year at the foot of the mountain and learns to wake up early.",
+      "genre": "Memoir",
+      "language": "English",
+      "pageCount": 204,
+      "publishedYear": 2024,
+      "featured": false,
+      "isNew": false,
+      "access": {
+        "priceTzs": 20000,
+        "minPaymentTzs": 2000,
+        "samplePages": 15,
+        "blockSize": 10
+      },
+      "sampleTitle": "January: Cloud",
+      "status": "published"
+    }
+  ],
+  "authors": [
+    {
+      "slug": "masoud-kipanya",
+      "name": "Masoud Kipanya",
+      "role": "Artist, cartoonist & storyteller",
+      "portrait": "/file_DiGyLKvnFpYKjwBz2H2GOAQD.webp",
+      "location": "Dar es Salaam",
+      "bio": [
+        "Masoud Kipanya has spent three decades drawing the people of Tanzania back to themselves. His cartoons have run in newspapers, on radio and across city walls, and his characters are known from Kariakoo to Kigoma.",
+        "KP Book brings his longer stories, satire and picture books into one digital shelf, made to be read on the phone in your pocket."
+      ]
+    },
+    {
+      "slug": "zawadi-mrisho",
+      "name": "Zawadi Mrisho",
+      "role": "Novelist",
+      "portrait": "/file_50ECmIrWZ63AoA1yuQcMCsSG.webp",
+      "location": "Zanzibar",
+      "bio": [
+        "Zawadi Mrisho writes about the coast: families, trade winds and the stubborn memory of the sea. She grew up between Stone Town and Tanga and now teaches creative writing.",
+        "Her novels move between English and Kiswahili the way her characters do."
+      ]
+    },
+    {
+      "slug": "juma-kassim",
+      "name": "Juma Kassim",
+      "role": "Entrepreneur & writer",
+      "portrait": "/file_K3IVLRAjbQ5AdFN7JbCil47p.webp",
+      "location": "Arusha",
+      "bio": [
+        "Juma Kassim started selling phone accessories from a single table in Kariakoo. Twenty years later he advises small traders across East Africa.",
+        "He writes plainly about money, patience and building things that last."
+      ]
+    }
+  ],
+  "orders": [],
+  "users": [
+    {
+      "id": "usr_demo_1",
+      "name": "Demo Reader",
+      "email": "reader@example.com",
+      "joined": "2026-01-14",
+      "status": "active",
+      "orders": 0,
+      "spentTzs": 0
+    },
+    {
+      "id": "usr_demo_2",
+      "name": "Amina Yusuf",
+      "email": "amina@example.com",
+      "joined": "2026-02-03",
+      "status": "active",
+      "orders": 0,
+      "spentTzs": 0
+    }
+  ],
+  "settings": {
+    "siteName": "KP Book",
+    "tagline": "Read the culture. Live the story.",
+    "contactEmail": "hello@kpwear.co.tz",
+    "contactPhone": "0757 829 130",
+    "location": "Dar es Salaam, Tanzania",
+    "currency": "TSh",
+    "minPaymentTzs": 1000,
+    "paymentsEnabled": true
+  },
+  "activity": [
+    {
+      "id": "18af9bb9-8305-4999-a519-30c1a35121bf",
+      "at": "2026-11-22T08:58:56.406Z",
+      "action": "login",
+      "detail": "Administrator signed in",
+      "by": "admin"
+    },
+    {
+      "id": "ae5e53fb-6a8d-45ee-ac06-7c8076ccdb7e",
+      "at": "2026-11-22T08:57:20.070Z",
+      "action": "login",
+      "detail": "Administrator signed in",
+      "by": "admin"
+    },
+    {
+      "id": "4f2faa84-911a-4caa-b768-b1595a6156e2",
+      "at": "2026-11-22T08:57:20.060Z",
+      "action": "settings.update",
+      "detail": "Site settings updated",
+      "by": "admin"
+    },
+    {
+      "id": "effcd760-71f1-4a3f-beed-64e0189e7264",
+      "at": "2026-11-22T08:57:10.200Z",
+      "action": "settings.update",
+      "detail": "Site settings updated",
+      "by": "admin"
+    },
+    {
+      "id": "36730637-a7e4-4703-a27f-e7933b448984",
+      "at": "2026-11-22T08:57:02.072Z",
+      "action": "order.create",
+      "detail": "Order KPDEMO001 (2000 TSh)",
+      "by": "admin"
+    },
+    {
+      "id": "a83db4de-de61-41c5-a2b1-84581155a372",
+      "at": "2026-11-22T08:56:52.418Z",
+      "action": "book.update",
+      "detail": "Updated \"Mtaa wa Kazi\"",
+      "by": "admin"
+    },
+    {
+      "id": "5a5dfea7-b340-41ee-89f7-d066dfc72433",
+      "at": "2026-11-22T08:56:42.822Z",
+      "action": "book.update",
+      "detail": "Updated \"Mtaa wa Kazi\"",
+      "by": "admin"
+    },
+    {
+      "id": "b89db7a1-9c38-4675-bb34-99b4063e69ac",
+      "at": "2026-11-22T08:55:32.764Z",
+      "action": "login",
+      "detail": "Administrator signed in",
+      "by": "admin"
+    },
+    {
+      "id": "9ceac6e5-3661-481d-b577-53df297f184e",
+      "at": "2026-11-22T08:54:43.389Z",
+      "action": "login",
+      "detail": "Administrator signed in",
+      "by": "admin"
+    }
+  ]
+}

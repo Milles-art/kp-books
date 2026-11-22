@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin | KP Book</title>
+<link rel="icon" href="/favicon.ico" />
+<link rel="stylesheet" href="/_hercules/font/css2" />
+<link rel="stylesheet" href="/assets/index-DtSTgV8a.css" />
+<style>
+:root{
+  /* Light theme — exact storefront tokens */
+  --bg:oklch(98.2% .008 95); --panel:oklch(100% 0 0); --panel2:oklch(95% .01 100);
+  --line:oklch(89% .012 110); --rowline:oklch(89% .012 110 / .6);
+  --text:oklch(20% .012 150); --muted:oklch(47% .02 150);
+  --red:oklch(59.4% .217 26); --red2:oklch(55% .22 27);
+  --green:#0a3d27; --green2:#12663f; --amber:oklch(78% .12 85);
+  --input:oklch(100% 0 0); --hover:rgba(0,0,0,.05); --topbg:oklch(98.2% .008 95 / .9);
+  --pillbg:rgba(18,102,63,.12); --navactive:oklch(94.5% .014 110);
+}
+:root.dark{
+  /* Dark theme — exact storefront tokens */
+  --bg:oklch(17% .018 158); --panel:oklch(21.5% .022 158); --panel2:oklch(27% .03 158);
+  --line:oklch(100% 0 0/.11); --rowline:rgba(255,255,255,.05);
+  --text:oklch(96% .01 95); --muted:oklch(72% .02 120);
+  --red:oklch(64% .21 26); --red2:oklch(68% .2 25);
+  --green2:#7fd1a6; --amber:oklch(80% .12 85);
+  --input:#0a1410; --hover:rgba(255,255,255,.05); --topbg:rgba(7,13,10,.9);
+  --pillbg:rgba(127,209,166,.14); --navactive:oklch(27% .03 158);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text)}
+body{font-family:Archivo,ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+.display{font-family:Anton,Archivo,sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.muted{color:var(--muted)}
+.right{margin-left:auto}
+.row{display:flex;align-items:center;gap:12px}
+.grid{display:grid;gap:16px}
+.hide{display:none!important}
+
+/* Login */
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;background:
+  radial-gradient(900px 500px at 70% -10%,rgba(10,61,39,.55),transparent),var(--bg)}
+.login-card{width:min(420px,100%);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:36px;box-shadow:0 30px 70px -30px #000}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:30px}
+.brand .kp{background:var(--green);color:#fff;padding:6px 10px;border-radius:10px;font-family:Anton;font-size:22px;line-height:1}
+.brand .bk{font-family:Anton;font-size:22px;letter-spacing:.04em}
+.brand .tag{margin-left:auto;font-size:10px;letter-spacing:.2em;color:var(--green2);border:1px solid rgba(127,209,166,.35);padding:5px 8px;border-radius:99px}
+.login-card h1{font-family:Anton;font-size:40px;line-height:1;margin:0 0 8px;letter-spacing:.02em}
+.login-card p{margin:0 0 26px;color:var(--muted)}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+input,select,textarea{width:100%;background:var(--input);border:1px solid var(--line);border-radius:10px;padding:11px 13px;outline:none;transition:.15s}
+input:focus,select:focus,textarea:focus{border-color:var(--green2);box-shadow:0 0 0 3px rgba(127,209,166,.12)}
+textarea{resize:vertical;min-height:80px}
+.field{margin-bottom:16px}
+.btn{border:0;border-radius:9999px;padding:11px 17px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red2);transform:translateY(-1px)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#f03740}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{background:rgba(255,255,255,.06)}
+.btn-sm{padding:7px 11px;font-size:11px}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.err{color:var(--red2);font-size:13px;margin-top:12px;min-height:19px}
+
+/* Shell */
+.shell{display:grid;grid-template-columns:238px 1fr;min-height:100vh}
+.side{background:var(--panel);border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.side .brand{margin:0 6px 30px}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav a{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:9999px;color:var(--muted);font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;transition:.15s}
+.nav a:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.nav a.active{background:var(--navactive);color:var(--text)}
+.nav a .ic{width:18px;text-align:center;opacity:.9}
+.side-foot{margin-top:auto;border-top:1px solid var(--line);padding-top:14px}
+.side-foot a,.side-foot button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:9px;background:none;border:0;color:var(--muted);cursor:pointer;text-align:left;font-size:13px}
+.side-foot a:hover,.side-foot button:hover{background:var(--hover);color:var(--text)}
+.main{min-width:0}
+.top{height:70px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 30px;position:sticky;top:0;background:var(--topbg);backdrop-filter:blur(12px);z-index:5}
+.top h2{font-family:Anton;font-size:25px;margin:0;letter-spacing:.03em}
+.content{padding:28px 30px 60px;max-width:1400px}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.page-head h1{font-family:Anton;font-size:44px;line-height:1;margin:0;letter-spacing:.02em}
+.page-head p{margin:6px 0 0;color:var(--muted)}
+
+/* Cards */
+.stats{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-bottom:22px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:19px}
+.stat .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.stat .val{font-family:Anton;font-size:38px;line-height:1.1;margin-top:8px}
+.stat .sub{font-size:12px;color:var(--green2);margin-top:6px}
+.cols2{grid-template-columns:1.4fr 1fr;align-items:start}
+.card h3{font-family:Anton;font-size:20px;margin:0 0 14px;letter-spacing:.03em}
+
+/* Table */
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th{text-align:left;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:13px 15px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px 15px;border-bottom:1px solid var(--rowline);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(255,255,255,.025)}
+.thumb{width:38px;height:52px;object-fit:cover;border-radius:6px;background:var(--panel2);flex:none}
+.avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;background:var(--panel2);flex:none}
+.pill{display:inline-block;padding:4px 9px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.pill.green{background:var(--pillbg);color:var(--green2)}
+.pill.gray{background:rgba(255,255,255,.08);color:var(--muted)}
+.pill.red{background:rgba(227,38,47,.16);color:var(--red2)}
+.pill.amber{background:rgba(232,176,75,.15);color:var(--amber)}
+.actions{display:flex;gap:6px;justify-content:flex-end}
+.icon-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:transparent;cursor:pointer;color:var(--muted);display:grid;place-items:center;font-size:13px}
+.icon-btn:hover{background:rgba(255,255,255,.07);color:var(--text)}
+.icon-btn.del:hover{background:rgba(227,38,47,.15);color:var(--red2);border-color:rgba(227,38,47,.4)}
+.empty{padding:50px 20px;text-align:center;color:var(--muted)}
+
+/* Activity */
+.act{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--rowline)}
+.act:last-child{border:0}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green2);margin-top:6px;flex:none}
+.act b{font-weight:600}
+.act small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:grid;place-items:center;padding:20px;z-index:50}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:18px;width:min(620px,100%);max-height:90vh;overflow:auto;padding:26px}
+.modal h3{font-family:Anton;font-size:27px;margin:0 0 18px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.form-grid .full{grid-column:1/-1}
+.check{display:flex;align-items:center;gap:9px;margin:6px 0 14px;color:var(--muted);cursor:pointer}
+.check input{width:17px;height:17px;accent-color:var(--green2)}
+.modal-foot{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+
+/* Toast */
+#toast{position:fixed;right:22px;bottom:22px;z-index:99;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--green2);border-radius:10px;padding:12px 16px;box-shadow:0 15px 40px -10px #000;animation:slide .2s ease}
+.toast.bad{border-left-color:var(--red2)}
+@keyframes slide{from{transform:translateX(20px);opacity:0}to{transform:none;opacity:1}}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;align-items:center;gap:10px;padding:12px;overflow:auto}
+  .side .brand{margin:0 10px 0 0}
+  .nav{flex-direction:row}
+  .nav a span:last-child{display:none}
+  .side-foot{margin:0 0 0 auto;border:0;padding:0;display:flex}
+  .side-foot a,.side-foot button{width:auto}
+  .content{padding:20px 16px 50px}
+  .top{padding:0 16px}
+  .cols2{grid-template-columns:1fr}
+  .page-head h1{font-size:34px}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="toast"></div>
+
+<script>
+(function(){
+  let t = localStorage.getItem('theme');
+  if(t!=='light'&&t!=='dark'&&t!=='system') t='system';
+  const d = matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.classList.toggle('dark', t==='system' ? d : t==='dark');
+})();
+const $ = (s, r=document) => r.querySelector(s);
+const escapeHtml = (s='') => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => 'TSh ' + Number(n||0).toLocaleString('en-US');
+const date = s => s ? new Date(s).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+
+const LUCIDE = {"arrow-left": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-left size-5\" aria-hidden=\"true\"><path d=\"m12 19-7-7 7-7\"></path><path d=\"M19 12H5\"></path></svg>", "lock-open": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-lock-open lucide-unlock\" aria-hidden=\"true\"><rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 9.9-1\"></path></svg>", "chevron-left": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-left\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"></path></svg>", "chevron-right": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-right\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"></path></svg>", "bookmark": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-bookmark size-5\" aria-hidden=\"true\"><path d=\"M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z\"></path></svg>", "library-big": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-library-big size-5\" aria-hidden=\"true\"><rect width=\"8\" height=\"18\" x=\"3\" y=\"3\" rx=\"1\"></rect><path d=\"M7 3v18\"></path><path d=\"M20.4 18.9c.2.5-.1 1.1-.6 1.3l-1.9.7c-.5.2-1.1-.1-1.3-.6L11.1 5.1c-.2-.5.1-1.1.6-1.3l1.9-.7c.5-.2 1.1.1 1.3.6Z\"></path></svg>", "sun": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-sun dark:hidden\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"></circle><path d=\"M12 2v2\"></path><path d=\"M12 20v2\"></path><path d=\"m4.93 4.93 1.41 1.41\"></path><path d=\"m17.66 17.66 1.41 1.41\"></path><path d=\"M2 12h2\"></path><path d=\"M20 12h2\"></path><path d=\"m6.34 17.66-1.41 1.41\"></path><path d=\"m19.07 4.93-1.41 1.41\"></path></svg>", "moon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-moon hidden dark:block\" aria-hidden=\"true\"><path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"></path></svg>", "menu": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-menu size-5\" aria-hidden=\"true\"><path d=\"M4 5h16\"></path><path d=\"M4 12h16\"></path><path d=\"M4 19h16\"></path></svg>", "map-pin": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-map-pin size-4\" aria-hidden=\"true\"><path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\"></path><circle cx=\"12\" cy=\"10\" r=\"3\"></circle></svg>", "book-open": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-book-open size-3.5\" aria-hidden=\"true\"><path d=\"M12 5v16\"></path><path d=\"M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z\"></path></svg>", "mail": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-mail size-4\" aria-hidden=\"true\"><path d=\"m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7\"></path><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"></rect></svg>", "phone": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-phone size-4\" aria-hidden=\"true\"><path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\"></path></svg>", "folder-plus": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-plus size-4\" aria-hidden=\"true\"><path d=\"M12 10v6\"></path><path d=\"M9 13h6\"></path><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path></svg>", "smartphone": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-smartphone size-4\" aria-hidden=\"true\"><rect width=\"14\" height=\"20\" x=\"5\" y=\"2\" rx=\"2\" ry=\"2\"></rect><path d=\"M12 18h.01\"></path></svg>", "globe": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-globe size-4\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20\"></path><path d=\"M2 12h20\"></path></svg>", "arrow-up-right": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-up-right size-4\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"></path><path d=\"M7 17 17 7\"></path></svg>", "search": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-search absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted-foreground\" aria-hidden=\"true\"><path d=\"m21 21-4.34-4.34\"></path><circle cx=\"11\" cy=\"11\" r=\"8\"></circle></svg>", "arrow-right": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>", "coins": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-coins mt-4 size-7\" aria-hidden=\"true\"><path d=\"M13.744 17.736a6 6 0 1 1-7.48-7.48\"></path><path d=\"M15 6h1v4\"></path><path d=\"m6.134 14.768.866-.5 2 3.464\"></path><circle cx=\"16\" cy=\"8\" r=\"6\"></circle></svg>", "layers": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-layers lucide-layers-3 mt-4 size-7\" aria-hidden=\"true\"><path d=\"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z\"></path><path d=\"M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12\"></path><path d=\"M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17\"></path></svg>", "shield-check": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shield-check mt-4 size-7\" aria-hidden=\"true\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"></path><path d=\"m9 12 2 2 4-4\"></path></svg>", "search-x": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-search-x\" aria-hidden=\"true\"><path d=\"m13.5 8.5-5 5\"></path><path d=\"m8.5 8.5 5 5\"></path><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg>", "check": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-check\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"></path></svg>", "plus": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-plus\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path></svg>", "circle-check": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-circle-check\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"m16 9-5.5 5.5L8 12\"></path></svg>", "info": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-info\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 16v-4\"></path><path d=\"M12 8h.01\"></path></svg>", "loader-circle": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-loader-circle\" aria-hidden=\"true\"><path d=\"M21 12a9 9 0 1 1-6.219-8.56\"></path></svg>", "octagon-x": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-octagon-x\" aria-hidden=\"true\"><path d=\"m15 9-6 6\"></path><path d=\"M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z\"></path><path d=\"m9 9 6 6\"></path></svg>", "triangle-alert": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-triangle-alert\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"></path><path d=\"M12 9v4\"></path><path d=\"M12 17h.01\"></path></svg>", "lock": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-lock\" aria-hidden=\"true\"><rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"></path></svg>", "chevron-down": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-down\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"></path></svg>", "ellipsis": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-ellipsis\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"1\"></circle><circle cx=\"19\" cy=\"12\" r=\"1\"></circle><circle cx=\"5\" cy=\"12\" r=\"1\"></circle></svg>", "folder": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path></svg>", "pencil": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-pencil\" aria-hidden=\"true\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\"></path><path d=\"m15 5 4 4\"></path></svg>", "trash": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-trash\" aria-hidden=\"true\"><path d=\"M10 11v6\"></path><path d=\"M14 11v6\"></path><path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6\"></path><path d=\"M3 6h18\"></path><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path></svg>", "x": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-x\" aria-hidden=\"true\"><path d=\"M18 6 6 18\"></path><path d=\"m6 6 12 12\"></path></svg>"};
+
+const icon = (name, size=18) => {
+  const raw = LUCIDE[name] || '';
+  return raw.replace('width="24" height="24"', `width="${size}" height="${size}"`);
+};
+const navIcon = {overview:'layers',books:'book-open',authors:'library-big',orders:'coins',users:'folder',settings:'ellipsis'};
+
+const state = { session:null, store:null, view:'overview', editing:null };
+
+async function api(path, opts={}) {
+  const r = await fetch('/api/admin' + path, {
+    credentials:'same-origin',
+    headers:{'Content-Type':'application/json'},
+    ...opts,
+  });
+  let data = {};
+  try { data = await r.json(); } catch {}
+  if (!r.ok) throw new Error(data.error || ('Request failed ('+r.status+')'));
+  return data;
+}
+function toast(msg, bad=false){
+  const el = document.createElement('div');
+  el.className = 'toast' + (bad?' bad':'');
+  el.textContent = msg;
+  $('#toast').appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transition='.25s'; setTimeout(()=>el.remove(),250); }, 3000);
+}
+
+/* ---------- Login ---------- */
+function renderLogin(error=''){
+  $('#root').innerHTML = `<div class="login-wrap">
+    <div class="login-card">
+      <div class="brand"><span class="kp">KP</span><span class="bk">BOOK</span><span class="tag">ADMIN</span></div>
+      <h1 class="display">Control room</h1>
+      <p class="muted">Sign in to manage the KP Book shelf, orders and readers.</p>
+      <form id="login-form">
+        <div class="field"><label>Username</label><input id="u" autocomplete="username" value="admin" required></div>
+        <div class="field"><label>Password</label><input id="p" type="password" autocomplete="current-password" required></div>
+        <button class="btn btn-primary" style="width:100%" type="submit">Sign in</button>
+        <div class="err">${escapeHtml(error)}</div>
+      </form>
+    </div></div>`;
+  $('#login-form').onsubmit = async e => {
+    e.preventDefault();
+    try {
+      await api('/login',{method:'POST',body:JSON.stringify({username:$('#u').value,password:$('#p').value})});
+      await boot();
+    } catch(err){ renderLogin(err.message); }
+  };
+}
+
+/* ---------- Shell ---------- */
+function renderShell(){
+  const v = state.view;
+  const titles = {overview:'Overview',books:'Books',authors:'Authors',orders:'Orders',users:'Readers',settings:'Settings'};
+  $('#root').innerHTML = `<div class="shell">
+    <aside class="side">
+      <div class="brand"><span class="kp">KP</span><span class="bk">BOOK</span><span class="tag">ADMIN</span></div>
+      <nav class="nav">
+        ${Object.entries(titles).map(([k,t])=>`<a data-view="${k}" class="${v===k?'active':''}"><span class="ic">${icon(navIcon[k],17)}</span><span>${t}</span></a>`).join('')}
+      </nav>
+      <div class="side-foot">
+        <a href="/" target="_blank">${icon('arrow-up-right',16)} <span>View site</span></a>
+        <button id="toggle-theme">${icon('sun',16)} <span>Theme</span></button>
+        <button id="logout">${icon('arrow-left',16)} <span>Sign out</span></button>
+      </div>
+    </aside>
+    <div class="main">
+      <div class="top"><h2 class="display">${titles[v]}</h2><span class="right muted">KP Book · Admin console</span></div>
+      <div class="content" id="content"></div>
+    </div>
+  </div>`;
+  $('#root').querySelectorAll('[data-view]').forEach(a => a.onclick = ()=>{ state.view = a.dataset.view; renderShell(); renderView(); });
+  $('#toggle-theme').onclick = ()=>{
+    const dark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', dark?'dark':'light');
+    renderShell();
+  };
+  $('#logout').onclick = async ()=>{ await api('/logout',{method:'POST'}); state.session=null; renderLogin(); };
+  renderView();
+}
+
+function renderView(){
+  const fn = {overview:viewOverview,books:viewBooks,authors:viewAuthors,orders:viewOrders,users:viewUsers,settings:viewSettings}[state.view];
+  fn();
+  renderModal();
+}
+
+/* ---------- Views ---------- */
+function viewOverview(){
+  const s = state.store;
+  const revenue = s.orders.reduce((n,o)=>n+Number(o.amountTzs||0),0);
+  $('#content').innerHTML = `
+    <div class="page-head"><div><h1 class="display">Overview</h1><p>Everything happening across your digital shelf.</p></div>
+      <a class="btn btn-ghost btn-sm" href="/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right size-4" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg> Open storefront</a></div>
+    <div class="grid stats">
+      <div class="card stat"><div class="lbl">Books published</div><div class="val">${s.books.length}</div><div class="sub">${s.books.filter(b=>b.isNew).length} marked new</div></div>
+      <div class="card stat"><div class="lbl">Authors</div><div class="val">${s.authors.length}</div><div class="sub">across the shelf</div></div>
+      <div class="card stat"><div class="lbl">Orders</div><div class="val">${s.orders.length}</div><div class="sub">demo payments recorded</div></div>
+      <div class="card stat"><div class="lbl">Revenue</div><div class="val">${money(revenue)}</div><div class="sub">from demo orders</div></div>
+    </div>
+    <div class="grid cols2">
+      <div class="card"><h3 class="display">Catalogue</h3>
+        <div class="table-wrap" style="border:0"><table><thead><tr><th>Book</th><th>Genre</th><th>Price</th><th>Pages</th></tr></thead><tbody>
+        ${s.books.map(b=>`<tr><td><div class="row"><img class="thumb" style="width:26px;height:36px" src="${escapeHtml(b.cover)}"><b>${escapeHtml(b.title)}</b></div></td><td class="muted">${escapeHtml(b.genre)}</td><td>${money(b.access?.priceTzs)}</td><td class="muted">${b.pageCount}</td></tr>`).join('')}
+        </tbody></table></div>
+      </div>
+      <div class="card"><h3 class="display">Recent activity</h3>
+        ${s.activity.length ? s.activity.slice(0,8).map(a=>`<div class="act"><span class="dot"></span><div><b>${escapeHtml(a.action)}</b> — ${escapeHtml(a.detail)}<small>${date(a.at)} · ${escapeHtml(a.by)}</small></div></div>`).join('') : '<div class="empty">No activity yet.</div>'}
+      </div>
+    </div>`;
+}
+
+function viewBooks(){
+  const s = state.store;
+  $('#content').innerHTML = `
+    <div class="page-head"><div><h1 class="display">Books</h1><p>Edit pricing, access rules and catalogue details.</p></div>
+      <div class="row"><button class="btn btn-ghost btn-sm" id="import-ledger">${icon('folder-plus',14)} Import demo payments</button><button class="btn btn-primary btn-sm" id="add-book">${icon('plus',14)} Add book</button></div></div>
+    <div class="table-wrap"><table><thead><tr><th>Book</th><th>Author</th><th>Genre</th><th>Price</th><th>Min</th><th>Sample</th><th>Status</th><th></th></tr></thead><tbody>
+    ${s.books.map(b=>`<tr>
+      <td><div class="row"><img class="thumb" src="${escapeHtml(b.cover)}"><div><b>${escapeHtml(b.title)}</b><div class="muted" style="font-size:11px">${escapeHtml(b.subtitle||'')}</div></div></div></td>
+      <td class="muted">${escapeHtml(s.authors.find(a=>a.slug===b.authorSlug)?.name||b.authorSlug||'—')}</td>
+      <td class="muted">${escapeHtml(b.genre||'')}</td><td>${money(b.access?.priceTzs)}</td><td class="muted">${money(b.access?.minPaymentTzs)}</td>
+      <td class="muted">${b.access?.samplePages||0} pg</td>
+      <td><span class="pill ${b.status==='published'?'green':'gray'}">${escapeHtml(b.status||'published')}</span></td>
+      <td><div class="actions"><button class="icon-btn" data-edit="${escapeHtml(b.slug)}" title="Edit">${icon('pencil',13)}</button><button class="icon-btn del" data-del="${escapeHtml(b.slug)}" title="Delete">${icon('trash',13)}</button></div></td>
+    </tr>`).join('')}
+    </tbody></table></div>`;
+  $('#add-book').onclick = ()=>{ state.editing = {kind:'book', data:null}; renderModal(); };
+  $('#import-ledger').onclick = importLedger;
+  $('#content').querySelectorAll('[data-edit]').forEach(el=>el.onclick=()=>{
+    state.editing = {kind:'book', data:state.store.books.find(b=>b.slug===el.dataset.edit)}; renderModal();
+  });
+  $('#content').querySelectorAll('[data-del]').forEach(el=>el.onclick=async()=>{
+    if(!confirm('Delete this book?')) return;
+    try { await api('/books/'+encodeURIComponent(el.dataset.del),{method:'DELETE'}); await reload(); toast('Book deleted'); }
+    catch(e){ toast(e.message,true); }
+  });
+}
+
+function viewAuthors(){
+  const s = state.store;
+  $('#content').innerHTML = `
+    <div class="page-head"><div><h1 class="display">Authors</h1><p>The people behind the stories.</p></div>
+      <button class="btn btn-primary btn-sm" id="add-author">${icon('plus',14)} Add author</button></div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(290px,1fr))">
+    ${s.authors.map(a=>`<div class="card">
+      <div class="row"><img class="avatar" src="${escapeHtml(a.portrait)}"><div><b style="font-size:16px">${escapeHtml(a.name)}</b><div class="muted" style="font-size:12px">${escapeHtml(a.role)}</div></div></div>
+      <p class="muted" style="font-size:12px;margin:14px 0">${escapeHtml((a.bio||[])[0]||'').slice(0,120)}…</p>
+      <div class="row"><span class="pill gray">${s.books.filter(b=>b.authorSlug===a.slug).length} books</span><span class="muted" style="font-size:11px">${escapeHtml(a.location||'')}</span>
+        <span class="right row"><button class="icon-btn" data-edit="${escapeHtml(a.slug)}">${icon('pencil',13)}</button><button class="icon-btn del" data-del="${escapeHtml(a.slug)}">${icon('trash',13)}</button></span></div>
+    </div>`).join('')}</div>`;
+  $('#add-author').onclick=()=>{state.editing={kind:'author',data:null};renderModal();};
+  $('#content').querySelectorAll('[data-edit]').forEach(el=>el.onclick=()=>{
+    state.editing={kind:'author',data:state.store.authors.find(a=>a.slug===el.dataset.edit)};renderModal();
+  });
+  $('#content').querySelectorAll('[data-del]').forEach(el=>el.onclick=async()=>{
+    if(!confirm('Delete this author?'))return;
+    try{await api('/authors/'+encodeURIComponent(el.dataset.del),{method:'DELETE'});await reload();toast('Author deleted');}catch(e){toast(e.message,true);}
+  });
+}
+
+function viewOrders(){
+  const s = state.store;
+  const total = s.orders.reduce((n,o)=>n+Number(o.amountTzs||0),0);
+  $('#content').innerHTML = `
+    <div class="page-head"><div><h1 class="display">Orders</h1><p>Demo payments and page unlocks. ${money(total)} total.</p></div>
+      <div class="row"><button class="btn btn-ghost btn-sm" id="import-ledger">${icon('folder-plus',14)} Import from ledger</button><button class="btn btn-primary btn-sm" id="add-order">${icon('plus',14)} Add order</button></div></div>
+    <div class="table-wrap"><table><thead><tr><th>Reference</th><th>Book</th><th>Customer</th><th>Method</th><th>Amount</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>
+    ${s.orders.length ? s.orders.map(o=>`<tr>
+      <td><b>${escapeHtml(o.reference)}</b></td><td class="muted">${escapeHtml(o.bookTitle||'')}</td><td class="muted">${escapeHtml(o.customer||'')}</td>
+      <td class="muted">${escapeHtml(o.method||'')}</td><td>${money(o.amountTzs)}</td>
+      <td><span class="pill ${o.status==='completed'?'green':o.status==='refunded'?'red':'amber'}">${escapeHtml(o.status)}</span></td>
+      <td class="muted">${date(o.paidAt)}</td>
+      <td><div class="actions"><button class="icon-btn" data-status="${escapeHtml(o.id)}" title="Toggle status">${icon('circle-check',13)}</button><button class="icon-btn del" data-del="${escapeHtml(o.id)}">${icon('trash',13)}</button></div></td>
+    </tr>`).join('') : '<tr><td colspan="8" class="empty">No orders yet. Add one or import demo payments from the ledger.</td></tr>'}
+    </tbody></table></div>`;
+  $('#add-order').onclick=()=>{state.editing={kind:'order',data:null};renderModal();};
+  $('#import-ledger').onclick=importLedger;
+  $('#content').querySelectorAll('[data-status]').forEach(el=>el.onclick=async()=>{
+    const o=state.store.orders.find(x=>x.id===el.dataset.status);
+    const next=o.status==='completed'?'refunded':'completed';
+    try{await api('/orders/'+encodeURIComponent(o.id),{method:'PUT',body:JSON.stringify({status:next})});await reload();toast('Order status updated');}catch(e){toast(e.message,true);}
+  });
+  $('#content').querySelectorAll('[data-del]').forEach(el=>el.onclick=async()=>{
+    if(!confirm('Delete this order?'))return;
+    try{await api('/orders/'+encodeURIComponent(el.dataset.del),{method:'DELETE'});await reload();toast('Order deleted');}catch(e){toast(e.message,true);}
+  });
+}
+
+function viewUsers(){
+  const s=state.store;
+  $('#content').innerHTML=`
+    <div class="page-head"><div><h1 class="display">Readers</h1><p>People with access to your books.</p></div>
+      <button class="btn btn-primary btn-sm" id="add-user">${icon('plus',14)} Add reader</button></div>
+    <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Joined</th><th>Status</th><th>Orders</th><th>Spent</th><th></th></tr></thead><tbody>
+    ${s.users.map(u=>`<tr><td><b>${escapeHtml(u.name)}</b></td><td class="muted">${escapeHtml(u.email)}</td><td class="muted">${date(u.joined)}</td>
+      <td><span class="pill ${u.status==='active'?'green':'gray'}">${escapeHtml(u.status)}</span></td><td class="muted">${u.orders||0}</td><td>${money(u.spentTzs)}</td>
+      <td><div class="actions"><button class="icon-btn" data-edit="${escapeHtml(u.id)}">${icon('pencil',13)}</button><button class="icon-btn del" data-del="${escapeHtml(u.id)}">${icon('trash',13)}</button></div></td></tr>`).join('')}
+    </tbody></table></div>`;
+  $('#add-user').onclick=()=>{state.editing={kind:'user',data:null};renderModal();};
+  $('#content').querySelectorAll('[data-edit]').forEach(el=>el.onclick=()=>{
+    state.editing={kind:'user',data:state.store.users.find(u=>u.id===el.dataset.edit)};renderModal();
+  });
+  $('#content').querySelectorAll('[data-del]').forEach(el=>el.onclick=async()=>{
+    if(!confirm('Remove this reader?'))return;
+    try{await api('/users/'+encodeURIComponent(el.dataset.del),{method:'DELETE'});await reload();toast('Reader removed');}catch(e){toast(e.message,true);}
+  });
+}
+
+function viewSettings(){
+  const s=state.store.settings;
+  $('#content').innerHTML=`
+    <div class="page-head"><div><h1 class="display">Settings</h1><p>Site-wide configuration.</p></div></div>
+    <div class="card" style="max-width:640px"><form id="settings-form">
+      <div class="form-grid">
+        <div class="field"><label>Site name</label><input name="siteName" value="${escapeHtml(s.siteName)}"></div>
+        <div class="field"><label>Currency</label><input name="currency" value="${escapeHtml(s.currency)}"></div>
+        <div class="field full"><label>Tagline</label><input name="tagline" value="${escapeHtml(s.tagline)}"></div>
+        <div class="field"><label>Contact email</label><input name="contactEmail" value="${escapeHtml(s.contactEmail)}"></div>
+        <div class="field"><label>Contact phone</label><input name="contactPhone" value="${escapeHtml(s.contactPhone)}"></div>
+        <div class="field"><label>Location</label><input name="location" value="${escapeHtml(s.location)}"></div>
+        <div class="field"><label>Minimum payment (TSh)</label><input name="minPaymentTzs" type="number" value="${s.minPaymentTzs}"></div>
+      </div>
+      <label class="check"><input name="paymentsEnabled" type="checkbox" ${s.paymentsEnabled?'checked':''}> Enable demo payments</label>
+      <button class="btn btn-primary" type="submit">Save settings</button>
+    </form></div>`;
+  $('#settings-form').onsubmit=async e=>{
+    e.preventDefault();
+    const f=e.target;
+    const payload={
+      siteName:f.siteName.value,currency:f.currency.value,tagline:f.tagline.value,
+      contactEmail:f.contactEmail.value,contactPhone:f.contactPhone.value,location:f.location.value,
+      minPaymentTzs:Number(f.minPaymentTzs.value),paymentsEnabled:f.paymentsEnabled.checked
+    };
+    try{await api('/settings',{method:'PUT',body:JSON.stringify(payload)});await reload();toast('Settings saved');}catch(err){toast(err.message,true);}
+  };
+}
+
+/* ---------- Ledger import ---------- */
+async function importLedger(){
+  try{
+    const raw=localStorage.getItem('kp-book:ledger:v1');
+    const ledger=raw?JSON.parse(raw):{};
+    let added=0;
+    for(const [slug,rec] of Object.entries(ledger)){
+      for(const pay of (rec.payments||[])){
+        const exists=state.store.orders.some(o=>o.reference===pay.reference);
+        if(exists)continue;
+        await api('/orders',{method:'POST',body:JSON.stringify({
+          reference:pay.reference,bookSlug:slug,amountTzs:pay.amountTzs,method:pay.method,
+          paidAt:pay.paidAt,status:'completed',customer:'Demo Reader'
+        })});
+        added++;
+      }
+    }
+    await reload();
+    toast(added?`Imported ${added} payment${added>1?'s':''}`:'No new payments found');
+  }catch(e){toast(e.message,true);}
+}
+
+/* ---------- Modal ---------- */
+function renderModal(){
+  const ed=state.editing;
+  if(!ed){ $('#modal-host')?.remove(); return; }
+  let host=document.getElementById('modal-host');
+  if(!host){host=document.createElement('div');host.id='modal-host';document.body.appendChild(host);}
+  const isNew=!ed.data;
+  const d=ed.data||{};
+  let title='', fields='', endpoint='', payload={};
+
+  if(ed.kind==='book'){
+    title=isNew?'Add book':'Edit book';
+    const a=d.access||{};
+    fields=`<div class="form-grid">
+      <div class="field"><label>Title</label><input id="f_title" value="${escapeHtml(d.title||'')}"></div>
+      <div class="field"><label>Slug</label><input id="f_slug" value="${escapeHtml(d.slug||'')}" ${isNew?'':'disabled'}></div>
+      <div class="field full"><label>Subtitle</label><input id="f_subtitle" value="${escapeHtml(d.subtitle||'')}"></div>
+      <div class="field"><label>Author slug</label><input id="f_author" value="${escapeHtml(d.authorSlug||'')}"></div>
+      <div class="field"><label>Genre</label><input id="f_genre" value="${escapeHtml(d.genre||'')}"></div>
+      <div class="field"><label>Language</label><input id="f_language" value="${escapeHtml(d.language||'')}"></div>
+      <div class="field"><label>Pages</label><input id="f_pages" type="number" value="${d.pageCount||0}"></div>
+      <div class="field"><label>Published year</label><input id="f_year" type="number" value="${d.publishedYear||new Date().getFullYear()}"></div>
+      <div class="field"><label>Full price (TSh)</label><input id="f_price" type="number" value="${a.priceTzs||0}"></div>
+      <div class="field"><label>Min payment (TSh)</label><input id="f_min" type="number" value="${a.minPaymentTzs||1000}"></div>
+      <div class="field"><label>Free sample pages</label><input id="f_sample" type="number" value="${a.samplePages||12}"></div>
+      <div class="field"><label>Page block size</label><input id="f_block" type="number" value="${a.blockSize||8}"></div>
+      <div class="field"><label>Status</label><select id="f_status"><option ${d.status==='published'?'selected':''}>published</option><option ${d.status==='draft'?'selected':''}>draft</option><option ${d.status==='archived'?'selected':''}>archived</option></select></div>
+      <div class="field"><label>Cover URL</label><input id="f_cover" value="${escapeHtml(d.cover||'')}"></div>
+      <div class="field full"><label>Blurb</label><textarea id="f_blurb">${escapeHtml(d.blurb||'')}</textarea></div>
+    </div>
+    <label class="check"><input id="f_new" type="checkbox" ${d.isNew?'checked':''}> Mark as New</label>
+    <label class="check"><input id="f_featured" type="checkbox" ${d.featured?'checked':''}> Featured on home page</label>`;
+    endpoint='/books'+(isNew?'':'/'+encodeURIComponent(d.slug));
+  } else if(ed.kind==='author'){
+    title=isNew?'Add author':'Edit author';
+    fields=`<div class="form-grid">
+      <div class="field"><label>Name</label><input id="f_name" value="${escapeHtml(d.name||'')}"></div>
+      <div class="field"><label>Slug</label><input id="f_slug" value="${escapeHtml(d.slug||'')}" ${isNew?'':'disabled'}></div>
+      <div class="field"><label>Role</label><input id="f_role" value="${escapeHtml(d.role||'')}"></div>
+      <div class="field"><label>Location</label><input id="f_location" value="${escapeHtml(d.location||'')}"></div>
+      <div class="field full"><label>Portrait URL</label><input id="f_portrait" value="${escapeHtml(d.portrait||'')}"></div>
+      <div class="field full"><label>Bio (one paragraph per line)</label><textarea id="f_bio" style="min-height:120px">${escapeHtml((d.bio||[]).join('\n'))}</textarea></div>
+    </div>`;
+    endpoint='/authors'+(isNew?'':'/'+encodeURIComponent(d.slug));
+  } else if(ed.kind==='order'){
+    title='Add order';
+    fields=`<div class="form-grid">
+      <div class="field"><label>Book</label><select id="f_book">${state.store.books.map(b=>`<option value="${escapeHtml(b.slug)}">${escapeHtml(b.title)}</option>`).join('')}</select></div>
+      <div class="field"><label>Amount (TSh)</label><input id="f_amount" type="number" value="1000"></div>
+      <div class="field"><label>Method</label><select id="f_method"><option>mpesa</option><option>mixx</option><option>airtel</option><option>card</option></select></div>
+      <div class="field"><label>Customer</label><input id="f_customer" value="Demo Reader"></div>
+    </div>`;
+    endpoint='/orders';
+  } else {
+    title=isNew?'Add reader':'Edit reader';
+    fields=`<div class="form-grid">
+      <div class="field"><label>Name</label><input id="f_name" value="${escapeHtml(d.name||'')}"></div>
+      <div class="field"><label>Email</label><input id="f_email" value="${escapeHtml(d.email||'')}"></div>
+      <div class="field"><label>Status</label><select id="f_ustatus"><option ${d.status==='active'?'selected':''}>active</option><option ${d.status==='suspended'?'selected':''}>suspended</option></select></div>
+    </div>`;
+    endpoint='/users'+(isNew?'':'/'+encodeURIComponent(d.id));
+  }
+
+  host.innerHTML=`<div class="overlay"><div class="modal">
+    <h3 class="display">${title}</h3>
+    <div id="modal-fields">${fields}</div>
+    <div class="err" id="modal-err"></div>
+    <div class="modal-foot"><button class="btn btn-ghost" id="modal-cancel">Cancel</button><button class="btn btn-primary" id="modal-save">Save</button></div>
+  </div></div>`;
+  $('#modal-cancel').onclick=()=>{state.editing=null;renderModal();};
+  $('#modal-save').onclick=async()=>{
+    try{
+      if(ed.kind==='book'){
+        payload={title:$('#f_title').value,slug:$('#f_slug').value,subtitle:$('#f_subtitle').value,
+          authorSlug:$('#f_author').value,genre:$('#f_genre').value,language:$('#f_language').value,
+          pageCount:Number($('#f_pages').value),publishedYear:Number($('#f_year').value),
+          cover:$('#f_cover').value,blurb:$('#f_blurb').value,status:$('#f_status').value,
+          isNew:$('#f_new').checked,featured:$('#f_featured').checked,
+          access:{priceTzs:Number($('#f_price').value),minPaymentTzs:Number($('#f_min').value),
+            samplePages:Number($('#f_sample').value),blockSize:Number($('#f_block').value)}};
+        if(!payload.title||!payload.slug)throw new Error('Title and slug are required');
+      } else if(ed.kind==='author'){
+        payload={name:$('#f_name').value,slug:$('#f_slug').value,role:$('#f_role').value,
+          location:$('#f_location').value,portrait:$('#f_portrait').value,
+          bio:$('#f_bio').value.split('\n').map(x=>x.trim()).filter(Boolean)};
+        if(!payload.name||!payload.slug)throw new Error('Name and slug are required');
+      } else if(ed.kind==='order'){
+        payload={bookSlug:$('#f_book').value,amountTzs:Number($('#f_amount').value),
+          method:$('#f_method').value,customer:$('#f_customer').value};
+      } else {
+        payload={name:$('#f_name').value,email:$('#f_email').value,status:$('#f_ustatus').value};
+        if(!payload.email)throw new Error('Email is required');
+      }
+      await api(endpoint,{method:isNew?'POST':'PUT',body:JSON.stringify(payload)});
+      state.editing=null;renderModal();await reload();toast('Saved successfully');
+    }catch(e){$('#modal-err').textContent=e.message;}
+  };
+}
+
+async function reload(){ state.store=await api('/state'); renderShell(); }
+
+async function boot(){
+  try{
+    state.session=await api('/session');
+    if(!state.session.authenticated){renderLogin();return;}
+    state.store=await api('/state');
+    renderShell();
+  }catch(e){renderLogin('Could not connect to the admin API.');}
+}
+boot();
+</script>
+</body>
+</html>
